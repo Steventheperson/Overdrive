@@ -1,14 +1,10 @@
 name: Overdrive
 main: io.github.bananapuncher714.overdrive.Overdrive
-version: Lunatic
-description: WARNING X WARNING X WARNING
-author: BananaPuncher714
-website: aaaaahhhhh.com
+version: 8888
 commands:
   overdrive:
-    description: Easy mode?!? Only elementary school kids play in easy mode.
-    permission: overdrive.lunatic
+    description: cringe
 
 permissions:
-  overdrive.lunatic:
+  cmd.overdrive:
     default: op
