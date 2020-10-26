@@ -8,7 +8,7 @@ public final class ReflectionUtil {
 
     public static NMSHandler getNewNMSHandler() {
         try {
-            Class<?> clazz = Class.forName("rip.artemis.overdrive.handler");
+            Class<?> clazz = Class.forName("rip.artemis.overdrive.Handler");
             return (NMSHandler) clazz.getDeclaredConstructor().newInstance();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             e.printStackTrace();
