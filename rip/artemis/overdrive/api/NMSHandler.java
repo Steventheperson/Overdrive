@@ -1,4 +1,4 @@
-package io.github.bananapuncher714.overdrive.api;
+package rip.artemis.overdrive.api;
 
 public interface NMSHandler {
 	long getTickDuration();

@@ -1,5 +1,5 @@
 name: Overdrive
-main: io.github.bananapuncher714.overdrive.Overdrive
+main: rip.artemis.overdrive.Overdrive
 version: 8888
 commands:
   overdrive:

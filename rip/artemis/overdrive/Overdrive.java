@@ -1,32 +1,28 @@
-package io.github.bananapuncher714.overdrive;
+package rip.artemis.overdrive;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import io.github.bananapuncher714.overdrive.api.NMSHandler;
+import rip.artemis.overdrive.api.NMSHandler;
 
 public class Overdrive extends JavaPlugin {
     private NMSHandler handler;
 
     @Override
     public void onEnable() {
-        handler = ReflectionUtil.getNewNMSHandler();
-
-        if (handler == null) {
-            getLogger().severe(ReflectionUtil.VERSION + " is not supported! Overdrive disabled.");
+        if (!getServer().getBukkitVersion().contains("1.16.3")) {
+            getServer().getConsoleSender().sendMessage(ChatColor.RED + "[!] Only supports 1.16.3, disabled");
             setEnabled(false);
-        } else {
-            getLogger().info("Detected version " + ReflectionUtil.VERSION);
-            getLogger().info("Overdrive does not work on paper");
         }
+        handler = ReflectionUtil.getNewNMSHandler();
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 1) {
-            double tickrate = 20.0;
+            double tickrate;
             try {
                 tickrate = Double.parseDouble(args[0]);
             } catch (Exception exception) {
