@@ -1,4 +1,4 @@
-package rip.artemis.overdrive.api;
+package rip.artemis.overdrive;
 
 public interface NMSHandler {
 	long getTickDuration();

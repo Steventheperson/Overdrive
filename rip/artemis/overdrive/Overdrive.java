@@ -5,7 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import rip.artemis.overdrive.api.NMSHandler;
+import java.lang.reflect.InvocationTargetException;
 
 public class Overdrive extends JavaPlugin {
     private NMSHandler handler;
@@ -16,7 +16,7 @@ public class Overdrive extends JavaPlugin {
             getServer().getConsoleSender().sendMessage(ChatColor.RED + "[!] Only supports 1.16.3, disabled");
             setEnabled(false);
         }
-        handler = ReflectionUtil.getNewNMSHandler();
+        handler = getNewNMSHandler();
     }
 
     @Override
@@ -44,7 +44,13 @@ public class Overdrive extends JavaPlugin {
         return true;
     }
 
-    public NMSHandler getHandler() {
-        return handler;
+    public NMSHandler getNewNMSHandler() {
+        try {
+            Class<?> clazz = Class.forName("rip.artemis.overdrive.Handler");
+            return (NMSHandler) clazz.getDeclaredConstructor().newInstance();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

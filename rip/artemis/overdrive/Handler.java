@@ -3,7 +3,8 @@ package rip.artemis.overdrive;
 import java.lang.reflect.Field;
 import java.util.concurrent.TimeUnit;
 
-import rip.artemis.overdrive.api.NMSHandler;
+import static org.bukkit.Bukkit.getServer;
+
 import net.minecraft.server.v1_16_R2.MinecraftServer;
 import net.minecraft.server.v1_16_R2.SystemUtils;
 
@@ -40,11 +41,11 @@ public class Handler implements NMSHandler {
             long time = System.nanoTime() + (TimeUnit.MILLISECONDS.toNanos(tickLength - 50L));
 
             try {
-                long curTick = nextTick.getLong(MinecraftServer.getServer());
+                long curTick = nextTick.getLong(getServer());
 
                 curTick += (tickLength - 50L);
 
-                nextTick.set(MinecraftServer.getServer(), curTick);
+                nextTick.set(getServer(), curTick);
             } catch (IllegalArgumentException | IllegalAccessException e) {
                 e.printStackTrace();
             }
